@@ -1,0 +1,58 @@
+20151215
+明日のタスク
+　・API、「registedmock」の製造をお願いします。
+　・下記のようにペーストして、こちらでレビューを受けて下さい。
+　・上記の仕様(mockなので、RESするだけ)は、「registed」とほぼ同様です。(falseをRESするだけ)
+　　　https://tiger.seek-ing.jp/secure_r/projects/seeking/wiki/%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%89%E3%82%B3%E3%83%BC%E3%83%89%E3%81%AEAPI%E8%AA%AC%E6%98%8E%E6%9B%B8
+　・例：
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Parse.Cloud.define("registedmock", function(request, response) {
+	var returnValue = null;
+	Parse.User.logIn(request.params.email, request.params.password, {
+		success: function(user) {
+			var tokenaccess = getNewToken();
+			returnValue = {"sequser": user.get('seq'), "tokenaccess": tokenaccess};
+			response.success(returnValue);
+			return;
+		},
+		error: function(user, error) {
+			response.error("Failed -- get token : " + error.message);
+		}
+	});
+});
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Bước 1:
+Cài đặt Parse bên phía client
++ Down Parse3.01Ver về , bản hiện tại là 3.02 nên cần check Tag để tìm 3.01
++ Đặt vào trong folder parse301
+
+Bước 2: Lấy Key, do key được sử dụng chung cho hệ thống nên ko thể từng người
+tạo key riêng mà dùng key của team được đặt trong tiger
+C:\Users\chu\Downloads\Seeking\seekingdocument\parse\account_keys
+-> Sử dụng key: seeking01_dev
+Mỏ command và vào thư mục chứa parse.exe vừa down
+parse301>parse configure account -d
+Account Key: # Nhập key vào
+Success !
+
+Bước 3:
+yamasaki 5 phut ư
+
+
+Tạo 1 key ở parse của mình
+7MtlUBi1EC61xw0jPPuCq63MHTQobFxStzt6bKbm
+
+B4: Test API、「registedmock」
+Gửi request theo dạng json lên server theo phương thức POST: functions/registedmock 
+
+Parse.Cloud.define("registedmock", function(request, response) {
+		success: function(user) {
+			return false;
+		};
+});
+
+
+Lên kế hoạch đi pv các cty khác:
+- Gửi CV cho công ty anh Chung 
+- Gửi CV cho công ty chị Nhàn
+- Ngoài ra tìm 1 số cty khác

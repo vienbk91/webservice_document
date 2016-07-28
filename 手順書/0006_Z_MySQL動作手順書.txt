@@ -1,0 +1,24 @@
+手順書
+
+1. MySQL 起動
+ Windowコマンドで以下のコマンドを入力する：
+	cd C:\Users\[yourAcc]\mysql526\bin
+	mysqld --standalone --console
+
+2. 別のコマンドでログイン
+　	cd C:\User\[yourAcc]\mysql5626\bin
+	mysql -u root -p
+	パスワードを入力
+
+3. データベースを作成
+	CREATE DATABASE seekingdb;
+
+4. 新しいユーザーを作成して、アクセス許可設定
+	CREATE USER 'seeking'@'localhost' IDENTIFIED BY 'your password';
+	GRANT ALL PRIVILEGES ON seekingdb.* TO 'seeking'@'localhost';
+	FLUSH PRIVILEGES;
+
+5. サンプルデータを作成
+	use seekingdb;
+	create table test(teststring varchar(1));
+	insert into test values('X');
